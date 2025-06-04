@@ -44,5 +44,6 @@ class AstronomyServiceTest
 
         assertTrue(altitude >= -90 && altitude <= 90);
         assertTrue(azimuth >= 0 && azimuth <= 360);
+
     }
 }
