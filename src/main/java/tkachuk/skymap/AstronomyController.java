@@ -82,4 +82,5 @@ public class AstronomyController
 
         panel.setPlanets(planets);
     }
+
 }

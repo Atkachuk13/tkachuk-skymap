@@ -47,7 +47,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build (and test) with Gradle
         env:
-          apikey: ${{ secrets.APIKEY }}
+            applicationID: ${{ secrets.APPLICATION_KEY_ASTRONOMY }}
+            applicationSecret: ${{ secrets.APPLICATION_SECRET_ASTRONOMY }}
         run: ./gradlew build
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
