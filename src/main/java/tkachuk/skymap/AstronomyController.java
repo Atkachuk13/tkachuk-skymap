@@ -53,7 +53,11 @@ public class AstronomyController
 
     public void search(String locationName)
     {
-        if (locationName == null || locationName.isEmpty()) return;
+        if (locationName == null || locationName.isEmpty())
+        {
+            return;
+        }
+
 
         String apiKey = new ApiKey("weathermapKey").get();
         geocodingService.getGeolocation(locationName, apiKey, 1)
