@@ -17,6 +17,6 @@ This application is designed to visualize the current positions of celestial bod
 
 Put screenshots here
 
-#### Links
+#### Author
 
-- [name](http://url)
+- [Adel Tkachuk]([http://url](https://github.com/Atkachuk13))
