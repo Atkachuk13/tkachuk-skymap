@@ -13,13 +13,16 @@ public class AstronomyFrame extends JFrame
         SkyPanel panel = new SkyPanel();
         add(panel);
 
-        AstronomyService service = new AstronomyServiceFactory().getService();
-        AstronomyController controller = new AstronomyController(panel);
+        AstronomyService astronomyService = new AstronomyServiceFactory().getService();
+        GeocodingService geocodingService = new GeocodingServiceFactory().getService();
+        AstronomyController controller = new AstronomyController(astronomyService, geocodingService, panel);
         controller.display();
 
-        // manual location
-        controller.setLocation(40.7142, -74.0059);
-        controller.display();
+        panel.setSearchListener(e ->
+        {
+            String location = panel.getSearchText();
+            controller.search(location);
+        });
     }
 
     public static void main(String[] args)

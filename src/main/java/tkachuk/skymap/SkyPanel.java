@@ -2,16 +2,39 @@ package tkachuk.skymap;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
 
 public class SkyPanel extends JPanel
 {
     private List<Planet> planets = new ArrayList<>();
+    private JTextField searchBar;
+    private JButton searchButton;
 
     public SkyPanel()
     {
         setBackground(Color.BLACK);
+        setLayout(new BorderLayout());
+
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        searchBar = new JTextField(20);
+        searchButton = new JButton("Search");
+
+        searchPanel.add(searchBar);
+        searchPanel.add(searchButton);
+
+        add(searchPanel, BorderLayout.NORTH);
+    }
+
+    public void setSearchListener(ActionListener listener)
+    {
+        searchButton.addActionListener(listener);
+    }
+
+    public String getSearchText()
+    {
+        return searchBar.getText().trim();
     }
 
     public void setPlanets(List<Planet> planets)

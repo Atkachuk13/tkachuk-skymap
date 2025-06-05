@@ -14,15 +14,17 @@ import java.util.List;
 
 public class AstronomyController
 {
-    private final AstronomyService service;
+    private final AstronomyService astronomyService;
+    private final GeocodingService geocodingService;
     private final SkyPanel panel;
     private final String keys;
     private double latitude = 40.7142;
     private double longitude = -74.0059;
 
-    public AstronomyController(SkyPanel panel)
+    public AstronomyController(AstronomyService astronomyService, GeocodingService geocodingService, SkyPanel panel)
     {
-        this.service = new AstronomyServiceFactory().getService();
+        this.astronomyService = astronomyService;
+        this.geocodingService = geocodingService;
         this.panel = panel;
 
         ApiKey appId = new ApiKey("applicationId");
@@ -32,27 +34,48 @@ public class AstronomyController
                 concat.getBytes());
     }
 
-    public void setLocation(double latitude, double longitude)
-    {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public void display()
+    public void fetchPlanetPositions(String planets)
     {
         String date = LocalDate.now().toString();
         String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        Disposable disposable = service.getPosition(
+        Disposable disposable = astronomyService.getPosition(
                         keys, longitude, latitude, 0,
                         date, date, time,
-                        "sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto"
+                        planets
                 )
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.from(SwingUtilities::invokeLater))
                 .subscribe(
                         this::handleResponse,
                         Throwable::printStackTrace);
+    }
+
+    public void search(String locationName)
+    {
+        if (locationName == null || locationName.isEmpty()) return;
+
+        String apiKey = new ApiKey("weathermapKey").get();
+        geocodingService.getGeolocation(locationName, apiKey, 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.from(SwingUtilities::invokeLater))
+                .subscribe(results ->
+                {
+                    if (results.length > 0)
+                    {
+                        this.latitude = results[0].lat;
+                        this.longitude = results[0].lon;
+                        fetchPlanetPositions("sun,moon,mars,venus,jupiter,saturn,uranus,neptune,pluto,mercury");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(panel, "Location not found: " + locationName);
+                    }
+                }, Throwable::printStackTrace);
+    }
+
+    public void display()
+    {
+        fetchPlanetPositions("sun,moon,mars,venus,jupiter,saturn,uranus,neptune,pluto,mercury");
     }
 
     private void handleResponse(AstronomyResponse response)
@@ -81,6 +104,7 @@ public class AstronomyController
         }
 
         panel.setPlanets(planets);
+        panel.repaint();
     }
 
 }

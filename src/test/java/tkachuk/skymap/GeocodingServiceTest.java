@@ -17,7 +17,7 @@ public class GeocodingServiceTest
 
         // when
         GeocodingResponse[] response = service.getGeolocation("Manhattan",
-                key, 5).blockingGet();
+                key, 1).blockingGet();
 
         // then
         assertNotNull(response);
