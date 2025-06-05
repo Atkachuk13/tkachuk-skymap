@@ -47,7 +47,7 @@ jobs:
         run: chmod +x gradlew
       - name: Build (and test) with Gradle
         env:
-            applicationID: ${{ secrets.APPLICATION_KEY_ASTRONOMY }}
+            applicationId: ${{ secrets.APPLICATION_KEY_ASTRONOMY }}
             applicationSecret: ${{ secrets.APPLICATION_SECRET_ASTRONOMY }}
             weathermapKey: ${{ secrets.GEOLOCATION_KEY }}
         run: ./gradlew build
