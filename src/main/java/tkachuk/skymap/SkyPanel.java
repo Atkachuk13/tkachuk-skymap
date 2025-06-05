@@ -93,5 +93,6 @@ public class SkyPanel extends JPanel
         int y = (int) (centerY + radius * Math.sin(angle));
 
         return new Point(x, y);
+
     }
 }
