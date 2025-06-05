@@ -15,10 +15,8 @@ This application is designed to visualize the current positions of celestial bod
 
 ### Screenshots
 
-![Sky Map Screenshot without search]("![Screenshot (61)](https://github.com/user-attachments/assets/9d633266-6738-46ad-bee9-b75f8997eeb5)
-")
-![Sky Map Screenshot with search]("![Screenshot (63)](https://github.com/user-attachments/assets/f592c0bb-cbaa-4486-bc22-5b4aee9761ff)
-")
+Sky Map Screenshot without search("![Screenshot (61)](https://github.com/user-attachments/assets/9d633266-6738-46ad-bee9-b75f8997eeb5")
+Sky Map Screenshot with search("![Screenshot (63)](https://github.com/user-attachments/assets/f592c0bb-cbaa-4486-bc22-5b4aee9761ff")
 
 
 #### Author
