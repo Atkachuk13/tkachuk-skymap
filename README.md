@@ -1,6 +1,17 @@
-### Project Name
+### Astronomy Sky View Map 
 
-Add a description
+An application that displays the current positions of planets based on a specified location.
+
+## Description
+
+This application is designed to visualize the current positions of celestial bodies in the sky based on the user’s geographic location. It's a simple, interactive desktop tool to help users understand where different planets are in the sky right now.
+
+### Key Features 
+* The screen is divided into 8 sections, simulating the sky view.
+* The display shows white circles, representing the positions of the planets, and each is labels with its name in red.
+* Real time data from [https://docs.astronomyapi.com/endpoints/bodies/positions AstronomyAPI], which fetches the celestial positions based on date, time, and location.
+* Users can enter any city or place, and the app fetches that location's latitude and longitude using the [https://openweathermap.org/api/geocoding-api OpenWeatherGeocodingAPI]
+* After entering a location, the sky map automatically updates to show planet positions of that place in real time. 
 
 ### Screenshots
 
