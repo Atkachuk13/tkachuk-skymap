@@ -19,4 +19,4 @@ Put screenshots here
 
 #### Author
 
-- [Adel Tkachuk]([http://url](https://github.com/Atkachuk13))
+- [Adel Tkachuk](https://github.com/Atkachuk13)
